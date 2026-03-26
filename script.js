@@ -46,4 +46,25 @@ Generare un numero random da 1 a 6, sia per il giocatore sia per il computer.
 Stabilire il vincitore, in base a chi fa il punteggio più alto. */
 
 
+/*Buckshot Roulette
+Generare un "caricatore" con 2 colpi "live" e 3 colpi "blank" (o casuali da 1 a 3) in posizioni random.
+Dichiara al giocatore quanti colpi e di che tipo sono nel caricatore.
+Giocatore scrive "me" se vuole sparare se stesso, "you" se vuole sparare il prossimo.
+Se spari un blank a te stesso, hai un turno in più - Se spari un blank al CPU, turno prossimo.
+Se spari un live a te stesso, perdi una vita, turno prossimo. - Se spari un live al CPU, perde una vita, turno prossimo.
+Una vita ognuno. (Metti comunque win condition vita del CPU a 0 come win condition)
+*/
 
+let playerLife = 1;
+let cpuLife = 1;
+const liveNum = 2;
+const blankNum = 3;
+const totalNum = blankNum + liveNum;
+
+const loader = [];
+
+let (i=0; i < 6; i++) {
+    if (totalNum !== 0) {
+        const liveOrBlank = Math.floor(Math.random())
+    }
+}
