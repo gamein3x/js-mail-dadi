@@ -11,7 +11,7 @@ Si può fare? Certo che si basta ragionare un po’.
 Nota: 
 Non è necessario provvedere alla validazione delle email, però se volete è una feature ben accetta.*/
 
-const listaMailAccettate = ['tiziocaio@pipomail.com', 'rossimario@zmail.it', 'carlobianchi@pipomail.com', 'audyezio@zmail.it', 'topopippo@pipomail.com'];
+const listaMailAccettate = ['tiziocaio@pipomail.com', 'rossimario@zmail.it', 'carlobianchi@pipomail.com', 'audyezio@zmail.it', 'topopippo@pipomail.com', 'ok'];
 
 let mailUser = prompt('Inserisci la tua mail per giocare.');
 let mailCheck = false;
@@ -38,8 +38,63 @@ if (mailCheck === true) {
         alert(`Dado player ${dicePlayer} = Dado CPU ${diceCPU}. Pareggio.`)
     }
 } else {
-    alert('Mail sbagliata. Ricarica e riprova.')
-}
+    alert('Mail sbagliata. Benvenuto al gioco 2');
+    let playerLife = 1;
+    let cpuLife = 1;
+    const liveNum = Math.floor(Math.random() * 3) + 1;
+    const blankNum = Math.floor(Math.random() * 3) + 1;
+
+
+    let live = liveNum;
+    let blank = blankNum;
+    const totalNum = blank + live;
+
+    const loader = [];
+
+
+    // Carica fucile
+    while (loader.length < totalNum) {
+        let liveOrBlank = Math.round(Math.random());
+        if (liveOrBlank === 1 && liveNum > 0) {
+            loader.push(1);
+            live--;
+        } else if (liveOrBlank === 0 && blankNum > 0) {
+            loader.push(0);
+            blank--;
+        }
+    }
+
+    console.log(loader);
+    console.log(`${blankNum} blank, ${blankNum} live.`);
+
+    while (loader.length > 0) {
+        const action = prompt(`${blankNum} blank, ${liveNum} live. Scrivi "me" per sparare a te stesso o "you" per sparare al CPU. Buona fortuna.`);
+        if (action === 'me') {
+            let shot = loader.shift();
+            if (shot === 0) {
+                alert('Hai preso un blank. Sei salvo.');
+                console.log('Blank sparato al player ' + loader);
+            } else {
+                alert('Hai preso un live. -1 Vita.');
+                playerLife--;
+                console.log('Live sparato al player ' + loader);
+            }
+        }
+        if (action === 'you') {
+            let shot = loader.shift();
+            if (shot === 0) {
+                alert('Hai sparato un blank.');
+                console.log('Blank sparato al CPU' + loader);
+            } else {
+                alert('Hai sparato un live. -1 Vita al CPU.');
+                cpuLife--;
+                console.log('Live sparato al CPU' + loader);
+            }
+        } else {
+            alert('Scrivi "me" per sparare a te stesso o "you" per sparare al CPU.')
+        }
+    }
+
 
 /*Gioco dei dadi
 Generare un numero random da 1 a 6, sia per il giocatore sia per il computer.
@@ -55,16 +110,6 @@ Se spari un live a te stesso, perdi una vita, turno prossimo. - Se spari un live
 Una vita ognuno. (Metti comunque win condition vita del CPU a 0 come win condition)
 */
 
-let playerLife = 1;
-let cpuLife = 1;
-const liveNum = 2;
-const blankNum = 3;
-const totalNum = blankNum + liveNum;
 
-const loader = [];
 
-let (i=0; i < 6; i++) {
-    if (totalNum !== 0) {
-        const liveOrBlank = Math.floor(Math.random())
-    }
-}
+
