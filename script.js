@@ -1,5 +1,7 @@
 `use strict`;
 
+const liveAudio = document.getElementById("liveAudio");
+const blankAudio = document.getElementById("blankAudio");
 
 /* Mail
 Crea una lista di email di invitati ad una festa.
@@ -16,7 +18,7 @@ const listaMailAccettate = ['tiziocaio@pipomail.com', 'rossimario@zmail.it', 'ca
 let mailUser = prompt('Inserisci la tua mail per giocare.');
 let mailCheck = false;
 
-for (i = 0; i < listaMailAccettate.length; i++) {
+for (let i = 0; mailCheck === false && i < listaMailAccettate.length; i++) {
     if (mailUser !== listaMailAccettate[i]) {
         console.log('Non questa, prossima.');
     } else {
@@ -53,8 +55,8 @@ if (mailCheck === true) {
     */
     let playerLife = 1;
     let cpuLife = 1;
-    const liveNum = Math.floor(Math.random() * 3) + 1;
-    const blankNum = Math.floor(Math.random() * 3) + 1;
+    const liveNum = 6//Math.floor(Math.random() * 3) + 1;
+    const blankNum = 6//Math.floor(Math.random() * 3) + 1;
     const totalNumConst = blankNum + liveNum;
 
     let live = liveNum;
@@ -92,10 +94,12 @@ if (mailCheck === true) {
             if (shot === 0) {
                 alert('Hai preso un blank. Sei salvo.');
                 console.log('Blank sparato al player ' + loader);
+                blankAudio.play();
             } else {
                 alert('Hai preso un live. -1 Vita.');
                 playerLife--;
                 console.log('Live sparato al player ' + loader);
+                liveAudio.play();
                 if (playerLife > 0) {
                     let cpuTurn = true;
                     while (cpuTurn === true) {
@@ -105,10 +109,12 @@ if (mailCheck === true) {
                             let cpuShot = loader.shift();
                             if (cpuShot === 0) {
                                 console.log('Blank, povero idiota.');
+                                blankAudio.play();
                                 alert('CPU ti spara un blank. Mancato.');
                                 cpuTurn = false;
                             } else {
                                 console.log('Live, player preso');
+                                liveAudio.play();
                                 alert('CPU ti spara un live. Preso.')
                                 playerLife--;
                                 cpuTurn = false;
@@ -118,10 +124,12 @@ if (mailCheck === true) {
                             let cpuShot = loader.shift();
                             if (cpuShot === 0) {
                                 console.log('Si spara un blank');
+                                blankAudio.play();
                                 alert('CPU si spara un blank. Turno del CPU.');
                                 cpuTurn = true;
                             } else {
                                 console.log('Si spara un live');
+                                liveAudio.play();
                                 alert('CPU si spara un live. Preso.')
                                 cpuLife--;
                                 cpuTurn = false;
@@ -135,6 +143,7 @@ if (mailCheck === true) {
             if (shot === 0) {
                 alert('Hai sparato un blank. Mancato.');
                 console.log('Blank sparato al CPU' + loader);
+                blankAudio.play();
                 let cpuTurn = true;
                 while (cpuTurn === true && loader.length > 0 && playerLife > 0) {
                     const cpuShotDirection = Math.round(Math.random());
@@ -143,10 +152,12 @@ if (mailCheck === true) {
                         let cpuShot = loader.shift();
                         if (cpuShot === 0) {
                             console.log('Blank, povero idiota.');
+                            blankAudio.play();
                             alert('CPU ti spara un blank. Mancato.');
                             cpuTurn = false;
                         } else {
                             console.log('Live, player preso');
+                            liveAudio.play();
                             alert('CPU ti spara un live. Preso.')
                             playerLife--;
                             cpuTurn = false;
@@ -156,10 +167,12 @@ if (mailCheck === true) {
                         let cpuShot = loader.shift();
                         if (cpuShot === 0) {
                             console.log('Si spara un blank');
+                            blankAudio.play();
                             alert('CPU si spara un blank. Turno del CPU.');
                             cpuTurn = true;
                         } else {
                             console.log('Si spara un live');
+                            liveAudio.play();
                             alert('CPU si spara un live. Preso.')
                             cpuLife--;
                             cpuTurn = false;
@@ -170,6 +183,7 @@ if (mailCheck === true) {
                 alert('Hai sparato un live. -1 Vita al CPU.');
                 cpuLife--;
                 console.log('Live sparato al CPU' + loader);
+                liveAudio.play();
                 if (cpuLife > 0) {
                     let cpuTurn = true;
                     while (cpuTurn === true && loader.length > 0 && playerLife > 0) {
@@ -179,10 +193,12 @@ if (mailCheck === true) {
                             let cpuShot = loader.shift();
                             if (cpuShot === 0) {
                                 console.log('Blank, povero idiota.');
+                                blankAudio.play();
                                 alert('CPU ti spara un blank. Mancato.');
                                 cpuTurn = false;
                             } else {
                                 console.log('Live, player preso');
+                                liveAudio.play();
                                 alert('CPU ti spara un live. Preso.')
                                 playerLife--;
                                 cpuTurn = false;
@@ -192,10 +208,12 @@ if (mailCheck === true) {
                             let cpuShot = loader.shift();
                             if (cpuShot === 0) {
                                 console.log('Si spara un blank');
+                                blankAudio.play();
                                 alert('CPU si spara un blank. Turno del CPU.');
                                 cpuTurn = true;
                             } else {
                                 console.log('Si spara un live');
+                                liveAudio.play();
                                 alert('CPU si spara un live. Preso.')
                                 cpuLife--;
                                 cpuTurn = false;
